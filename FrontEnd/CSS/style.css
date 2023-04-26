@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background: #FFFEF8;
 }
 ol, ul {
 	list-style: none;
@@ -98,6 +99,11 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+.page-active {
+	font-weight: 600;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -127,14 +133,27 @@ li:hover {
 }
 
 .gallery-filters {
-	align-items: center;
+	justify-content: center;
+	display: flex;
 }
 
 .gallery-filter {
 	border: 1px solid #1D6154;
 	border-radius: 60px;
 	color: #1D6154;
-	margin : 5px;
+	padding : 5px 10px;
+	margin : 20px 5px;
+	min-width: 100px;
+
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 19px;
+}
+
+.selected {
+	background-color: #1D6154;
+	color: white;
 }
 
 .gallery {
@@ -181,6 +200,40 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+label {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+
+	color: #3D3D3D;
+	margin: 0.4em 0em;
+	text-align: left;
+}
+
+.login-section {
+	max-width: 380px;
+	margin: auto;
+	text-align: center;
+}
+
+.login-form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 3em;
+}
+
+input{
+	
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	border: none;
+	margin-bottom: 1em;
+	height: 2em;
+
+}
+
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
@@ -190,6 +243,25 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+}
+
+input:focus, textarea:focus {
+	box-shadow: 0px 4px 14px  #1D6154;
+	outline      : none;
+  }
+  
+
+.forgot-password {
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	text-decoration-line: underline;
+	border: none;
+	color: #3D3D3D;
+	background-color: inherit;
+
 }
 
 footer nav ul {
