@@ -59,6 +59,44 @@ header {
 	justify-content: space-between;
 	margin: 50px 0
 }
+
+#admin-pannel {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	margin: 0px;
+	width: 100vw;
+	margin-left: calc(-1 * ((100vw - 100%) / 2));
+}
+
+.edition-intro {
+	color: white;
+	margin: 0px 15px;
+
+}
+
+input[type="submit"].edition-changes  {
+	
+	background: #FFFFFF;
+	border-radius: 60px;
+	color: #000000;
+	width:auto;
+	margin: 5px;
+	font-family: 'Work Sans';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	text-align: center;
+}
+
+input.edition-changes:focus, textarea.edition-changes:focus {
+	box-shadow: 0px 4px 14px  gray;
+	outline      : none;
+  }
+
 section {
 	margin: 50px 0
 }
@@ -117,6 +155,21 @@ li:hover {
 	width: 80%;
 }
 
+.admin-actions {
+	margin-left: calc(min(57px, 5vw));
+	margin-top: 5px;
+}
+
+.admin-actions:hover {
+	color: #B1663C;
+}
+
+.Projects-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 #introduction article {
 	flex: 1
 }
@@ -149,6 +202,10 @@ li:hover {
 	font-weight: 700;
 	font-size: 16px;
 	line-height: 19px;
+}
+
+.hidden {
+	display: none;
 }
 
 .selected {

@@ -45,7 +45,6 @@ async function generateFiltersPerCategories(categories) {
 
         // On ajoute l'event listener pour permettre la sélection des données et le changement d'affichage du bouton
         filterElement.addEventListener("click", function() {
-            console.log(filterElement);
             // Désélection de tous les autres filtres
             deselectAllFilters();
             // Sélection du filtre cliqué

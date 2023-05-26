@@ -1,5 +1,6 @@
 // Récupération des travaux depuis l'API
 const reponse = await fetch(`http://localhost:5678/api/works/`);
+// pas de gestion des errers --> à prévoir
 const works = await reponse.json();
 
 // Génération de la page sans filtre
@@ -36,9 +37,6 @@ export default function generateWorks(category) {
 
         const figure = works[i];
         const categoryWork = works[i].category.id;
-
-        console.log(categoryWork);
-        console.log(category);
 
         if (categoryWork ===  category) {
         // Récupération de l'élément du DOM qui peuplera la "gallery"
