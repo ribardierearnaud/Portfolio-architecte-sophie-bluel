@@ -1,4 +1,4 @@
-import { generateWorks } from "./assets.js";
+import { generateWorks } from "./works.js";
 
 // Récupération des travaux depuis l'API
 const reponse = await fetch(`http://localhost:5678/api/categories/`);
@@ -25,7 +25,7 @@ async function generateFiltersPerCategories(categories) {
         // Sélection du filtre "All"
         allFilterElement.classList.add("selected");
         // Appel à la fonction pour filtrer les travaux avec la catégorie "All"
-        generateWorks(allFilterElement.innerText,"main");
+        generateWorks(allFilterElement.innerText);
     });
 
     // On rattache l'élément filterElement à la section galleryFilter
@@ -50,7 +50,7 @@ async function generateFiltersPerCategories(categories) {
             // Sélection du filtre cliqué
             filterElement.classList.add("selected");
             // Appel à la fonction pour filtrer les travaux avec la catégorie correspondante
-            generateWorks(category.id,"main");
+            generateWorks(category.id);
         });
     }
 

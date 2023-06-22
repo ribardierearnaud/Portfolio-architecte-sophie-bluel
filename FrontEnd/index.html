@@ -12,9 +12,10 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
 	crossorigin="anonymous" referrerpolicy="no-referrer">
-	<script type="module" src="./assets/assets.js"></script>
+	<script type="module" src="./assets/works.js"></script>
 	<script type="module" src="./assets/categories.js"></script>
-	<script type="module" src="./assets/script.js"></script>
+	<script type="module" src="./assets/modal.js"></script>
+	<script type="module" src="./assets/menu.js"></script>
 	<link rel="shortcut icon" type="image/png" href="./favicon.ico"/>
 	
 	</head>
@@ -23,12 +24,6 @@
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
-		<ul>
-			<li><a href="#portfolio">projets</a></li>
-			<li><a href="#contact">contact</a></li>
-			<li id="login-link"><a href="./login.html">login</a></li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
 	</nav>
 </header>
 <main>
@@ -48,7 +43,7 @@
 		<div class="Projects-title"><h2>Mes Projets</h2><p class="admin-actions" id="edit-projects1"></p></div>
 		<div class="gallery-filters" id="gallery-filters1">
 		</div>
-		<div class="gallery">
+		<div class="gallery" id="gallery-main">
 		</div>
 	</section>
 	<section id="contact">
@@ -65,6 +60,17 @@
 		</form>
 	</section>
 </main>
+<aside>
+	<div class="modal" id="modal1">
+		<div class="close-modal" id="close-modal-button"><i class="fa-solid fa-xmark"></i></div>
+		<h3>Galerie Photo</h3>
+		<div class="gallery" id="galleryModal"></div>
+		<p><input type="button" class="button" value="Ajouter une photo"></input></p>
+		<p><input type="button" class="delete-all" value="Supprimer la Galerie"></p>
+	</div>
+</aside>
+<div class="overlay" id="overlay1"></div>
+
 
 <footer>
 	<nav>

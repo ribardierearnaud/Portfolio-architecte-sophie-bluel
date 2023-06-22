@@ -143,6 +143,11 @@ nav li {
 	font-size: 1.2em;
 }
 
+nav img {
+	height: 18px;
+	padding-top: 5px;
+}
+
 li:hover {
 	color: #B1663C;
 }
@@ -235,7 +240,7 @@ li:hover {
 
 }
 
-.gallery-modal {
+#galleryModal {
 	width: 80%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -243,9 +248,6 @@ li:hover {
 	grid-row-gap: 20px;
 	padding-bottom: 30px;
 	border-bottom: 1px solid #B3B3B3;
-}
-.gallery-modal img {
-	width: 100%;
 }
 
 
@@ -294,13 +296,13 @@ label {
 	text-align: left;
 }
 
-.login-section {
+.loginSection {
 	max-width: 380px;
 	margin: auto;
 	text-align: center;
 }
 
-.login-form {
+.loginForm {
 	display: flex;
 	flex-direction: column;
 	margin-top: 3em;
@@ -359,6 +361,7 @@ footer nav ul {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 25vw;
+	min-width: 350px;
 	max-height: 90vh;
 	background-color: #FFFFFF;
     border-radius: 10px;
@@ -378,7 +381,7 @@ footer nav ul {
 
 .icons {
 	position: relative;
-	top: -95%;
+	top: -75%;
 }
 
 .enlarge {
@@ -388,7 +391,7 @@ footer nav ul {
 	color: #FFFFFF;
 	font-size: 10px;
 	position: absolute;
-	right: 40%;
+	right: 20px;
     margin: 0;
     padding: 4px;
 	border-radius: 5px;
@@ -404,8 +407,7 @@ footer nav ul {
 	color: #FFFFFF;
 	font-size: 10px;
 	position: absolute;
-	top: 5%;
-	right: 10%;
+	right: 2px;
     margin: 0;
     padding: 4px;
 	border-radius: 5px;
@@ -462,3 +464,8 @@ footer nav ul {
 	box-shadow: none;
 }
 
+.alreadyConnected {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
