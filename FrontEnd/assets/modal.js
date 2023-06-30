@@ -115,7 +115,7 @@ export function closeModal() {
     previewElement.classList.add('hidden');
 
     const errorMessage = document.getElementById('errorMessage');
-    errorMessage.innerHTML = ""
+    errorMessage.innerHTML = "";
 
 };
     
@@ -138,7 +138,7 @@ function previewImage() {
     })
   
     if (file) {
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file);
     }
   }
   

@@ -175,8 +175,6 @@ async function deleteWork(workId) {
     
       // Récupérer les données du formulaire
       const formData = new FormData(form)
-      let works = []
-      let worksBackup = []
     
       // Envoyer une requête POST pour ajouter un nouveau projet
       const credentials = JSON.parse(window.sessionStorage.getItem("credentials"));
@@ -197,8 +195,6 @@ async function deleteWork(workId) {
           }
         })
         .then(newProject => {
-          works.push(newProject)
-          worksBackup.push(newProject)
           generateWorks("Tous");
     
           // Réafficher la page 1 de la modale
@@ -207,7 +203,7 @@ async function deleteWork(workId) {
         })
         .catch(error => {
           console.error(error)
-          const errorMessage = document.getElementById('errorMessage')
+          const errorMessage = document.getElementById('errorMessage');
           errorMessage.innerHTML =
             "Une erreur s'est produite. Veuillez vérifier que l'ensemble des champs du formulaire sont bien renseignés et réessayez."
         })
