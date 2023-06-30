@@ -62,11 +62,44 @@
 </main>
 <aside>
 	<div class="modal" id="modal1">
-		<div class="close-modal" id="close-modal-button"><i class="fa-solid fa-xmark"></i></div>
+		<div class="close-modal" id="close-modal-button1"><i class="fa-solid fa-xmark"></i></div>
 		<h3>Galerie Photo</h3>
 		<div class="gallery" id="galleryModal"></div>
-		<p><input type="button" class="button" value="Ajouter une photo"></input></p>
-		<p><input type="button" class="delete-all" value="Supprimer la Galerie"></p>
+		<p><input type="button" class="button" id="add-project" value="Ajouter une photo"></input></p>
+		<p><input type="button" class="delete-all" id="delete-all-works" value="Supprimer la Galerie"></p>
+	</div>
+	<div class="modal" id="modal2">
+		<div class="previous-modal" id="previous-page1"><i class="fa-solid fa-arrow-left"></i></div>
+		<div class="close-modal" id="close-modal-button2"><i class="fa-solid fa-xmark"></i></div>
+		<h3>Ajout Photo</h3>
+		<div id="addProjectFormContainer">
+			<form id="addProjectForm">									
+				<div class="pictureDisplay">
+					<div class="selectPicture">
+						<div class="previewContainer"><img class="imagePreview hidden" id="imagePreview"/>								
+						</div>
+						<div id="selectPictureButton" class="selectPictureButtonContainer"><p><i class="fa-sharp fa-solid fa-image addPictureIcon"></i></p>
+						<label for="image" class="addPictureButton">+ Ajouter photo</label>
+						<p class="pictureSpecifications">jpg, png: 4mo max</p>
+						</div>
+					</div>
+					<input class="hidden" type="file" id="image" name="image" accept=".png, .jpeg, .jpg" />
+				</div>
+				<div class="pictureInfo">
+					<div class="pictureTitle">
+					  <label for="title">Titre</label>
+					  <input type="text" id="title" name="title" />
+					</div>
+					<div class="pictureCategory">
+						<label for="category">Catégorie</label>
+						<select name="category" id="categorySelection"></select>
+					</div>
+				</div>
+				<div id="errorMessage"></div>
+				<div class="submitNewProject">
+				  <button id="addProjectButton">Valider</button>
+				</div>
+			</form>
 	</div>
 </aside>
 <div class="overlay" id="overlay1"></div>

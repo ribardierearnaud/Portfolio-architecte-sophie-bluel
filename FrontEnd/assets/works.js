@@ -1,3 +1,6 @@
+import { openModal } from "./modal.js";
+import { closeModal } from "./modal.js";
+
 
 
 // Génération de la page sans filtre
@@ -35,6 +38,8 @@ export async function generateWorks(category) {
                 if (category === "Tous") {
                     // Création d'une balise figure pour chaque travaux
                     const figureElement = document.createElement("figure");
+                    // Ajout de l'attribut data-work-id
+                    figureElement.setAttribute("data-work-id", figure.id); 
     
                     // Création de la balise image et ajout d'un alt
                     const imageElement = document.createElement("img");
@@ -58,7 +63,15 @@ export async function generateWorks(category) {
                         // Création de la balise div pour les icônes
                         const iconsElement = document.createElement("div");
                         iconsElement.classList.add("icons");
-                        iconsElement.innerHTML = `<div class="enlarge"><i class="fa-solid fa-arrows-up-down-left-right"></i></div> <div class="bin"><i class="fa-solid fa-trash-can"></i></div>`;
+
+                        // Création des icones poubelle et élargissement
+                        const enlargeElement = document.createElement("div");
+                        enlargeElement.classList.add("enlarge");
+                        enlargeElement.innerHTML = `<i class="fa-solid fa-arrows-up-down-left-right"></i>`;
+
+                        const binElement = document.createElement("div");
+                        binElement.classList.add("bin");
+                        binElement.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
     
                         // Création de la balise figcaption pour le texte "éditer"
                         const figcaptionElement = document.createElement("figcaption");
@@ -67,6 +80,22 @@ export async function generateWorks(category) {
                         // Ajout des icônes et du texte à la figure
                         figureElement.appendChild(iconsElement);
                         figureElement.appendChild(figcaptionElement);
+
+                        // Ajout des icônes poubelle et élargissement à la div icones
+                        iconsElement.appendChild(enlargeElement);
+                        iconsElement.appendChild(binElement);
+
+                        // Ajout d'un événement d'écoute sur la corbeille
+                        binElement.addEventListener("click", (e) => {
+                            e.preventDefault();
+                            const workElement = e.target.closest("figure");
+                            const workId = parseInt(workElement.dataset.workId); 
+                            deleteWork(workId);
+                            });
+
+                        // Ajout d'un événement d'écoute sur le bouton supprimer tous les travaux de la galerie
+                        const deleteAllWorksButton = document.getElementById("delete-all-works");
+                        deleteAllWorksButton.addEventListener("click", deleteAllWorks);
                     }
     
                     // Ajout de la figure à l'élément de galerie correspondant
@@ -77,6 +106,9 @@ export async function generateWorks(category) {
                     if (categoryWork ===  category) {
                     // Création d’une balise dédiée à un projet d'architecture
                     const figureElement = document.createElement("figure");
+                    // Ajout de l'attribut data-work-id
+                    figureElement.setAttribute("data-work-id", figure.id); 
+
                     // Création des balises 
                     const imageElement = document.createElement("img");
                     imageElement.src = figure.imageUrl;
@@ -96,88 +128,87 @@ export async function generateWorks(category) {
         }
     });
 }
-    
-    /* if (context === "modale") {
-        for (let i = 0; i < works.length; i++) {
 
-            const figure = works[i];
-            // Récupération de l'élément du DOM qui peuplera la "gallery" de la modale
-            const sectionModaleGallery = document.querySelector(".gallery-modal");
-            // Création d’une balise dédiée à un projet d'architecture
-            const figureElement = document.createElement("figure");
-            figureElement.classList.add("figureModale");
+function deleteAllWorks() {
+    const workElements = document.querySelectorAll('[data-work-id]');
 
-            // Création des balises 
-            const imageElement = document.createElement("img");
-            imageElement.src = figure.imageUrl;
+    // Crée un tableau pour stocker les valeurs des attributs data-work-id
+    const workIds = [];
 
-            const iconsElement = document.createElement("div");
-            iconsElement.classList.add("icons");
-            iconsElement.innerHTML = `<div class="enlarge"><i class="fa-solid fa-arrows-up-down-left-right"></i></div> <div class="bin"><i class="fa-solid fa-trash-can"></i></div>`
+    // Parcourt tous les éléments et récupère la valeur de l'attribut data-work-id
+    workElements.forEach((element) => {
+        const workId = parseInt(element.getAttribute('data-work-id'));
+        workIds.push(workId);
+    });
 
-            const figcaptionElement = document.createElement("figcaption");
-            figcaptionElement.innerText = "éditer";
-    
-            
-            // On rattache la balise figure à la section Gallery
-            sectionModaleGallery.appendChild(figureElement);
-            figureElement.appendChild(imageElement);
-            figureElement.appendChild(figcaptionElement);
-            figureElement.appendChild(iconsElement);
+    // On lance deleteWork pour l'ensemble des éléments :
+    workIds.forEach((workId) => {
+        deleteWork(workId);
+    });
+}
+
+async function deleteWork(workId) {
+
+    const credentials = JSON.parse(window.sessionStorage.getItem("credentials"));
+
+    let response = await fetch(
+      `http://localhost:5678/api/works/${workId}`,
+        {
+            method: "DELETE",
+            headers: {
+                accept: "*/*",
+                Authorization: `Bearer ${credentials.token}`,
+            },
         }
-
-    } else if (context === "main") {
-
-    document.querySelector(".gallery").innerHTML = "";
-    if (category === "Tous") {
-        
-        for (let i = 0; i < works.length; i++) {
-
-            const figure = works[i];
-            // Récupération de l'élément du DOM qui peuplera la "gallery"
-            const sectionGallery = document.querySelector(".gallery");
-            // Création d’une balise dédiée à un projet d'architecture
-            const figureElement = document.createElement("figure");
-            // Création des balises 
-            const imageElement = document.createElement("img");
-            imageElement.src = figure.imageUrl;
-            const figcaptionElement = document.createElement("figcaption");
-            figcaptionElement.innerText = figure.title;
+    );
     
-            
-            // On rattache la balise figure à la section Gallery
-            sectionGallery.appendChild(figureElement);
-            figureElement.appendChild(imageElement);
-            figureElement.appendChild(figcaptionElement);
-        }
-    
+    generateWorks("Tous");
+
+    if (!response.ok) {
+        alert("Echec de suppression");
+      }
     }
+
+    const form = document.querySelector('#addProjectForm')
+    form.addEventListener('submit', event => {
+      event.preventDefault()
     
-    else for (let i = 0; i < works.length; i++) {
+      // Récupérer les données du formulaire
+      const formData = new FormData(form)
+      let works = []
+      let worksBackup = []
+    
+      // Envoyer une requête POST pour ajouter un nouveau projet
+      const credentials = JSON.parse(window.sessionStorage.getItem("credentials"));
 
-        const figure = works[i];
-        const categoryWork = works[i].category.id;
-
-        if (categoryWork ===  category) {
-        // Récupération de l'élément du DOM qui peuplera la "gallery"
-        const sectionGallery = document.querySelector(".gallery");
-        // Création d’une balise dédiée à un projet d'architecture
-        const figureElement = document.createElement("figure");
-        // Création des balises 
-        const imageElement = document.createElement("img");
-        imageElement.src = figure.imageUrl;
-        const figcaptionElement = document.createElement("figcaption");
-        figcaptionElement.innerText = figure.title;
-
-        
-        // On rattache la balise figure à la section Gallery
-        sectionGallery.appendChild(figureElement);
-        figureElement.appendChild(imageElement);
-        figureElement.appendChild(figcaptionElement);
-        }
-    }
-}
-}
-)
-}
-*/
+      fetch('http://localhost:5678/api/works/', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${credentials.token}`
+        },
+        body: formData
+      })
+        .then(response => {
+          if (response.ok) {
+            // Ajouter le nouveau projet à la liste des projets
+            return response.json()
+          } else {
+            throw new Error("Erreur lors de l'ajout du projet")
+          }
+        })
+        .then(newProject => {
+          works.push(newProject)
+          worksBackup.push(newProject)
+          generateWorks("Tous");
+    
+          // Réafficher la page 1 de la modale
+          closeModal();
+          openModal();
+        })
+        .catch(error => {
+          console.error(error)
+          const errorMessage = document.getElementById('errorMessage')
+          errorMessage.innerHTML =
+            "Une erreur s'est produite. Veuillez vérifier que l'ensemble des champs du formulaire sont bien renseignés et réessayez."
+        })
+    })
