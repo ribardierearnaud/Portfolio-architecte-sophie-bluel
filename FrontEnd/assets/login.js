@@ -1,11 +1,11 @@
 const credentials = window.sessionStorage.getItem("credentials");
 
 if (credentials) {
-    document.getElementsByClassName('loginSection')[0].style.display = "none";
+    document.getElementsByClassName('login-section')[0].style.display = "none";
 }
 else {
-    document.getElementsByClassName('alreadyConnected')[0].style.display = "none";
-    const loginForm = document.querySelector(".loginForm");
+    document.getElementsByClassName('already-connected')[0].style.display = "none";
+    const loginForm = document.querySelector(".login-form");
 
     loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();

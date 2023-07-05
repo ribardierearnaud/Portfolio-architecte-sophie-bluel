@@ -1,4 +1,6 @@
 import { generateWorks } from "./works.js";
+
+// Déclaration des constantes
 const credentials = window.sessionStorage.getItem("credentials");
 const modal1 = document.getElementById("modal1");
 const modal2 = document.getElementById("modal2");
@@ -12,10 +14,10 @@ const filters = document.getElementById("gallery-filters1");
 const addproject = document.getElementById("add-project");
 const previousButton = document.getElementById("previous-page1");
 const inputElement = document.getElementById('image');
-const previewElement = document.getElementById('imagePreview');
-const pictureUploadButton = document.getElementById('selectPictureButton');
-const categorySelection = document.getElementById('categorySelection')
-const addProjectForm = document.getElementById('addProjectForm')
+const previewElement = document.getElementById('image-preview');
+const pictureUploadButton = document.getElementById('select-picture-button');
+const categorySelection = document.getElementById('category-selection');
+const addProjectForm = document.getElementById('add-project-form');
 
 
 
@@ -95,10 +97,10 @@ function addProjectModal() {
       .then(response => response.json())
       .then(categories => {
         categories.forEach(category => {
-          const option = document.createElement('option')
-          option.value = category.id
-          option.textContent = category.name
-          categorySelection.appendChild(option)
+          const option = document.createElement('option');
+          option.value = category.id;
+          option.textContent = category.name;
+          categorySelection.appendChild(option);
         })
       })
 
@@ -106,6 +108,7 @@ function addProjectModal() {
 
 export function closeModal() {
     
+    // On désactive les modales et on réinitialise le contenu de la modale 2 
     modal1.classList.remove("active");
     modal2.classList.remove("active");
     overlay.classList.remove("active");
@@ -114,7 +117,7 @@ export function closeModal() {
     pictureUploadButton.classList.remove('hidden');
     previewElement.classList.add('hidden');
 
-    const errorMessage = document.getElementById('errorMessage');
+    const errorMessage = document.getElementById('error-message');
     errorMessage.innerHTML = "";
 
 };

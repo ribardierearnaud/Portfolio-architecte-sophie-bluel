@@ -59,7 +59,7 @@ export async function generateWorks(category) {
                         figureElement.appendChild(figcaptionElement);
                     } else {
                         // Ajout de la class modale
-                        figureElement.classList.add("figureModale");
+                        figureElement.classList.add("figure-modale");
                         // Création de la balise div pour les icônes
                         const iconsElement = document.createElement("div");
                         iconsElement.classList.add("icons");
@@ -90,12 +90,16 @@ export async function generateWorks(category) {
                             e.preventDefault();
                             const workElement = e.target.closest("figure");
                             const workId = parseInt(workElement.dataset.workId); 
-                            deleteWork(workId);
-                            });
 
-                        // Ajout d'un événement d'écoute sur le bouton supprimer tous les travaux de la galerie
-                        const deleteAllWorksButton = document.getElementById("delete-all-works");
-                        deleteAllWorksButton.addEventListener("click", deleteAllWorks);
+                            let res = confirm("Êtes-vous sûr de vouloir supprimer ce projet?");
+
+                            if (res) {
+                                deleteWork(workId);
+                            }
+                            else {
+                                alert("Suppression annulée par l'utilisateur");
+                            }
+                        });
                     }
     
                     // Ajout de la figure à l'élément de galerie correspondant
@@ -129,6 +133,21 @@ export async function generateWorks(category) {
     });
 }
 
+// Ajout d'un événement d'écoute sur le bouton supprimer tous les travaux de la galerie
+const deleteAllWorksButton = document.getElementById("delete-all-works");
+deleteAllWorksButton.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    let res = confirm("Êtes-vous sûr de vouloir supprimer l'ensemble des projets de la gallerie?");
+
+    if (res) {
+        deleteAllWorks();
+    }
+    else {
+        alert("Suppression de l'ensemble des travaux de la galerie annulée par l'utilisateur");
+    }
+});
+
 function deleteAllWorks() {
     const workElements = document.querySelectorAll('[data-work-id]');
 
@@ -152,59 +171,63 @@ async function deleteWork(workId) {
     const credentials = JSON.parse(window.sessionStorage.getItem("credentials"));
 
     let response = await fetch(
-      `http://localhost:5678/api/works/${workId}`,
+        `http://localhost:5678/api/works/${workId}`,
         {
             method: "DELETE",
             headers: {
                 accept: "*/*",
                 Authorization: `Bearer ${credentials.token}`,
             },
+                
         }
-    );
+    );    
     
+    //on régénère les travaux pour actualiser les galleries suite à la suppression
     generateWorks("Tous");
 
     if (!response.ok) {
-        alert("Echec de suppression");
-      }
+        alert("Echec de suppression, déconnectez vous et reconnectez vous avant de recommencer.");
     }
+            
+}
 
-    const form = document.querySelector('#addProjectForm')
-    form.addEventListener('submit', event => {
-      event.preventDefault()
-    
-      // Récupérer les données du formulaire
-      const formData = new FormData(form)
-    
-      // Envoyer une requête POST pour ajouter un nouveau projet
-      const credentials = JSON.parse(window.sessionStorage.getItem("credentials"));
+      
+const form = document.querySelector('#add-project-form')
+form.addEventListener('submit', event => {
+    event.preventDefault()
 
-      fetch('http://localhost:5678/api/works/', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${credentials.token}`
-        },
-        body: formData
-      })
-        .then(response => {
-          if (response.ok) {
-            // Ajouter le nouveau projet à la liste des projets
-            return response.json()
-          } else {
-            throw new Error("Erreur lors de l'ajout du projet")
-          }
-        })
-        .then(newProject => {
-          generateWorks("Tous");
-    
-          // Réafficher la page 1 de la modale
-          closeModal();
-          openModal();
-        })
-        .catch(error => {
-          console.error(error)
-          const errorMessage = document.getElementById('errorMessage');
-          errorMessage.innerHTML =
-            "Une erreur s'est produite. Veuillez vérifier que l'ensemble des champs du formulaire sont bien renseignés et réessayez."
-        })
+    // Récupérer les données du formulaire
+    const formData = new FormData(form)
+
+    // Envoyer une requête POST pour ajouter un nouveau projet
+    const credentials = JSON.parse(window.sessionStorage.getItem("credentials"));
+
+    fetch('http://localhost:5678/api/works/', {
+    method: 'POST',
+    headers: {
+        Authorization: `Bearer ${credentials.token}`
+    },
+    body: formData
     })
+    .then(response => {
+        if (response.ok) {
+        // Ajouter le nouveau projet à la liste des projets
+        return response.json()
+        } else {
+        throw new Error("Erreur lors de l'ajout du projet")
+        }
+    })
+    .then(newProject => {
+        generateWorks("Tous");
+
+        // Réafficher la page 1 de la modale
+        closeModal();
+        openModal();
+    })
+    .catch(error => {
+        console.error(error)
+        const errorMessage = document.getElementById('error-message');
+        errorMessage.innerHTML =
+        "Une erreur s'est produite. Veuillez vérifier que l'ensemble des champs du formulaire sont bien renseignés et réessayez."
+    })
+})

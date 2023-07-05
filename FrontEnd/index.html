@@ -8,6 +8,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<link rel="stylesheet" href="./CSS/normalize.css">
 	<link rel="stylesheet" href="./CSS/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
 	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
@@ -40,7 +41,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<div class="Projects-title"><h2>Mes Projets</h2><p class="admin-actions" id="edit-projects1"></p></div>
+		<div class="projects-title"><h2>Mes Projets</h2><p class="admin-actions" id="edit-projects1"></p></div>
 		<div class="gallery-filters" id="gallery-filters1">
 		</div>
 		<div class="gallery" id="gallery-main">
@@ -64,7 +65,7 @@
 	<div class="modal" id="modal1">
 		<div class="close-modal" id="close-modal-button1"><i class="fa-solid fa-xmark"></i></div>
 		<h3>Galerie Photo</h3>
-		<div class="gallery" id="galleryModal"></div>
+		<div class="gallery" id="gallery-modal"></div>
 		<p><input type="button" class="button" id="add-project" value="Ajouter une photo"></input></p>
 		<p><input type="button" class="delete-all" id="delete-all-works" value="Supprimer la Galerie"></p>
 	</div>
@@ -72,32 +73,32 @@
 		<div class="previous-modal" id="previous-page1"><i class="fa-solid fa-arrow-left"></i></div>
 		<div class="close-modal" id="close-modal-button2"><i class="fa-solid fa-xmark"></i></div>
 		<h3>Ajout Photo</h3>
-		<div id="addProjectFormContainer">
-			<form id="addProjectForm">									
-				<div class="pictureDisplay">
-					<div class="selectPicture">
-						<div class="previewContainer"><img class="imagePreview hidden" id="imagePreview"/>								
+		<div id="add-project-form-container">
+			<form id="add-project-form">									
+				<div class="picture-display">
+					<div class="select-picture">
+						<div class="preview-container"><img class="image-preview hidden" id="image-preview"/>								
 						</div>
-						<div id="selectPictureButton" class="selectPictureButtonContainer"><p><i class="fa-sharp fa-solid fa-image addPictureIcon"></i></p>
-						<label for="image" class="addPictureButton">+ Ajouter photo</label>
-						<p class="pictureSpecifications">jpg, png: 4mo max</p>
+						<div id="select-picture-button" class="select-picture-button-container"><p><i class="fa-sharp fa-solid fa-image add-picture-icon"></i></p>
+						<label for="image" class="add-picture-button">+ Ajouter photo</label>
+						<p class="picture-specifications">jpg, png: 4mo max</p>
 						</div>
 					</div>
 					<input class="hidden" type="file" id="image" name="image" accept=".png, .jpeg, .jpg" />
 				</div>
-				<div class="pictureInfo">
-					<div class="pictureTitle">
+				<div class="picture-info">
+					<div class="picture-title">
 					  <label for="title">Titre</label>
 					  <input type="text" id="title" name="title" />
 					</div>
-					<div class="pictureCategory">
-						<label for="category">Catégorie</label>
-						<select name="category" id="categorySelection"></select>
+					<div class="picture-category">
+						<label for="category-selection">Catégorie</label>
+						<select name="category-selection" id="category-selection"></select>
 					</div>
 				</div>
-				<div id="errorMessage"></div>
-				<div class="submitNewProject">
-				  <button id="addProjectButton">Valider</button>
+				<div id="error-message"></div>
+				<div class="submit-new-project">
+				  <button id="add-project-button">Valider</button>
 				</div>
 			</form>
 	</div>
