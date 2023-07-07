@@ -143,6 +143,8 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
+	color: #3D3D3D;
 }
 
 nav img {
@@ -151,6 +153,15 @@ nav img {
 }
 
 li:hover {
+	color: #B1663C;
+}
+
+nav a {
+	text-decoration:none;
+	color: #3D3D3D;
+}
+
+nav a:hover {
 	color: #B1663C;
 }
 
@@ -629,7 +640,7 @@ footer nav ul {
 	display: none;
 }
 
-#errorMessage {
+#error-message {
 	color: red;
 	margin-bottom: 20px;
   }

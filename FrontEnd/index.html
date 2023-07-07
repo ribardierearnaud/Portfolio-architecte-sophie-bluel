@@ -17,18 +17,18 @@
 	<script type="module" src="./assets/categories.js"></script>
 	<script type="module" src="./assets/modal.js"></script>
 	<script type="module" src="./assets/menu.js"></script>
-	<link rel="shortcut icon" type="image/png" href="./favicon.ico"/>
+	<link rel="shortcut icon" type="image/png" href="./favicon.ico">
 	
 	</head>
 <body class="index-page">
 <div class="admin-pannel" id="admin-pannel"></div>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 	</nav>
 </header>
 <main>
-	<section id="introduction">
+	<div id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
 			<p class="admin-actions" id="edit-main-picture1"></p>
@@ -39,7 +39,7 @@
 			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
-	</section>
+	</div>
 	<section id="portfolio">
 		<div class="projects-title"><h2>Mes Projets</h2><p class="admin-actions" id="edit-projects1"></p></div>
 		<div class="gallery-filters" id="gallery-filters1">
@@ -66,7 +66,7 @@
 		<div class="close-modal" id="close-modal-button1"><i class="fa-solid fa-xmark"></i></div>
 		<h3>Galerie Photo</h3>
 		<div class="gallery" id="gallery-modal"></div>
-		<p><input type="button" class="button" id="add-project" value="Ajouter une photo"></input></p>
+		<p><input type="button" class="button" id="add-project" value="Ajouter une photo"></p>
 		<p><input type="button" class="delete-all" id="delete-all-works" value="Supprimer la Galerie"></p>
 	</div>
 	<div class="modal" id="modal2">
@@ -77,23 +77,22 @@
 			<form id="add-project-form">									
 				<div class="picture-display">
 					<div class="select-picture">
-						<div class="preview-container"><img class="image-preview hidden" id="image-preview"/>								
-						</div>
+						<div class="preview-container" id="preview-container"></div>
 						<div id="select-picture-button" class="select-picture-button-container"><p><i class="fa-sharp fa-solid fa-image add-picture-icon"></i></p>
-						<label for="image" class="add-picture-button">+ Ajouter photo</label>
-						<p class="picture-specifications">jpg, png: 4mo max</p>
+							<label for="image" class="add-picture-button">+ Ajouter photo</label>
+							<p class="picture-specifications">jpg, png: 4mo max</p>
 						</div>
 					</div>
-					<input class="hidden" type="file" id="image" name="image" accept=".png, .jpeg, .jpg" />
+					<input class="hidden" type="file" id="image" name="image" accept=".png, .jpeg, .jpg">
 				</div>
 				<div class="picture-info">
 					<div class="picture-title">
 					  <label for="title">Titre</label>
-					  <input type="text" id="title" name="title" />
+					  <input type="text" id="title" name="title">
 					</div>
 					<div class="picture-category">
 						<label for="category-selection">Catégorie</label>
-						<select name="category-selection" id="category-selection"></select>
+						<select name="category" id="category-selection"></select>
 					</div>
 				</div>
 				<div id="error-message"></div>
@@ -101,6 +100,7 @@
 				  <button id="add-project-button">Valider</button>
 				</div>
 			</form>
+		</div>
 	</div>
 </aside>
 <div class="overlay" id="overlay1"></div>
