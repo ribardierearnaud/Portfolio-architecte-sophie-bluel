@@ -1,6 +1,6 @@
 # Portfolio-architecte-sophie-bluel
 
-Thank you for visiting! This project contains a backend and a front end for displaying the ** portfolio of the architect Sophie Bluel** . I have worked on the ** front end**  part only, it contains:
+Thank you for visiting! This project contains a backend and a front end for displaying the portfolio of the architect Sophie Bluel . I have worked on the front end  part only, it contains:
 
 2 HTML pages:
 - an index.html page showing the works of the artist and displaying some administrator functions when connected
